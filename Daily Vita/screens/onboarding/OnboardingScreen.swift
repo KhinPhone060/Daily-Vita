@@ -23,6 +23,7 @@ struct OnboardingScreen: View {
                     .font(.subheadline)
                     .fontWeight(.semibold)
             }
+            .foregroundColor(.primaryText)
             
             Image(.onboarding)
                 .resizable()
@@ -32,6 +33,7 @@ struct OnboardingScreen: View {
                 .font(.subheadline)
                 .fontWeight(.medium)
                 .padding(.horizontal)
+                .foregroundColor(.primaryText)
             
             Spacer()
             
@@ -42,11 +44,12 @@ struct OnboardingScreen: View {
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity, maxHeight: 50)
-                    .background(.teal)
+                    .background(.button)
                     .cornerRadius(10)
             }
             .padding()
         }
+        .background(.theme)
     }
 }
 
