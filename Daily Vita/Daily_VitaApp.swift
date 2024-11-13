@@ -11,7 +11,7 @@ import SwiftUI
 struct Daily_VitaApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CoordinatorView()
         }
     }
 }
