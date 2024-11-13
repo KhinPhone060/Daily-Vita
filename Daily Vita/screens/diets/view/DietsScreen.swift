@@ -9,6 +9,8 @@ import SwiftUI
 
 struct DietsScreen: View {
     @EnvironmentObject var coordinator: Coordinator
+    
+    @EnvironmentObject var personalizedReportVm: PersonalizedReportViewModel
     @StateObject var viewModel = DietsViewModel()
     
     var body: some View {
@@ -78,7 +80,7 @@ struct DietsScreen: View {
             
             Button {
                 coordinator.push(.allergies)
-                print(viewModel.selectedDiet)
+                personalizedReportVm.selectedDiet = viewModel.selectedDiet
             } label: {
                 Text("Next")
                     .foregroundColor(.white)

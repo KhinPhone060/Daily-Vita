@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct QuestionsScreen: View {
+    @EnvironmentObject var personalizedReportVm: PersonalizedReportViewModel
     @StateObject var viewModel = QuestionsViewModel()
     
     var body: some View {
@@ -96,7 +97,11 @@ struct QuestionsScreen: View {
     
     func OutputButton() -> some View {
         Button {
+            personalizedReportVm.isDailyExposure = viewModel.isDailyExposure
+            personalizedReportVm.isSmoke = viewModel.isSmoke
+            personalizedReportVm.alchool = viewModel.alchool
             
+            personalizedReportVm.printOutPersonalizedReport()
         } label: {
             Text("Get my personalized vitamin")
                 .foregroundColor(.white)

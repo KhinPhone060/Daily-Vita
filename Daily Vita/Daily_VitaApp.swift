@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct Daily_VitaApp: App {
+    @StateObject var personalizedReportViewModel = PersonalizedReportViewModel()
+    
     var body: some Scene {
         WindowGroup {
             CoordinatorView()
+                .environmentObject(personalizedReportViewModel)
         }
     }
 }

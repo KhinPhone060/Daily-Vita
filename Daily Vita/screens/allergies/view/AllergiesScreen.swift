@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AllergiesScreen: View {
     @EnvironmentObject var coordinator: Coordinator
+    
+    @EnvironmentObject var personalizedReportVm: PersonalizedReportViewModel
     @StateObject var viewModel = AllergiesViewModel()
     
     var body: some View {
@@ -101,7 +103,7 @@ struct AllergiesScreen: View {
             
             Button {
                 coordinator.push(.questions)
-                print(viewModel.selectedAllergies)
+                personalizedReportVm.selectedAllergies = viewModel.selectedAllergies
             } label: {
                 Text("Next")
                     .foregroundColor(.white)
