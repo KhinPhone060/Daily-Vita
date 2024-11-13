@@ -15,6 +15,8 @@ struct CoordinatorView: View {
             coordinator.build(page: .onboarding)
                 .navigationDestination(for: Page.self) { page in
                     coordinator.build(page: page)
+                        .navigationBarTitle("")
+                        .navigationBarHidden(true)
                 }
         }
         .environmentObject(coordinator)
