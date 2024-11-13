@@ -11,6 +11,8 @@ struct HealthConcernsScreen: View {
     @EnvironmentObject var coordinator: Coordinator
     @StateObject var viewModel = HealthConcernViewModel()
     
+    @State private var draggedItem: Int?
+    
     var body: some View {
         VStack {
             VStack(spacing: 30) {
@@ -101,6 +103,15 @@ struct HealthConcernsScreen: View {
             LazyVStack {
                 ForEach(viewModel.selectedHealthConcerns, id: \.self) { item in
                     PriorityItem(name: item.name)
+                        .onDrag {
+                            self.draggedItem = item.id
+                            return NSItemProvider()
+                        }
+                        .onDrop(of: [.text],
+                                delegate: DropViewDelegate(destinationItem: item.priority, priority: $viewModel.selectedHealthConcerns, draggedItem: $draggedItem)
+                        )
+                        .transition(.move(edge: .top))
+                        .animation(.easeInOut, value: viewModel.selectedHealthConcerns)
                 }
             }
         }
@@ -125,6 +136,7 @@ struct HealthConcernsScreen: View {
         .padding(.horizontal)
         .padding(.vertical, 10)
         .background(.box)
+        .cornerRadius(10)
         .overlay {
             RoundedRectangle(cornerRadius: 10)
                 .stroke(.primaryText)
@@ -142,6 +154,7 @@ struct HealthConcernsScreen: View {
             
             Button {
                 coordinator.push(.diets)
+                print(viewModel.selectedHealthConcerns)
             } label: {
                 Text("Next")
                     .foregroundColor(.white)
